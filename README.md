@@ -185,8 +185,8 @@ window.Buyte("load", {
    window.Buyte("onPayment", function(paymentToken, done){
       console.log(paymentToken);
       setTimeout(function(){
-      done();
-      alert("Apple Pay Payment Authorised! " + JSON.stringify(paymentToken));
+         done();
+         alert("Apple Pay Payment Authorised! " + JSON.stringify(paymentToken));
       }, 3000)
    });
   ```
