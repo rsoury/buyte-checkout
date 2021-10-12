@@ -39,8 +39,8 @@ These instructions will get you a copy of the project built for deployment or lo
    
 ## Buyte Widget
 
-You can use the following script to load the Buyte Widget.
-Please replace the S3 URL in the snippet with your own URL targeting the built widget `index.js` file.
+You can use the following script to load the Buyte Widget.  
+Please replace the S3 URL in the snippet with your own URL targeting the built widget `index.js` file.  
 
 ```javascript
 (function(window, document){
@@ -66,31 +66,31 @@ To learn more about the widget JS API, please visit the [JS API Docs](https://gi
 
 ## Apple Pay Merchant Id Domain Association File
 
-The association file is required to be hosted on any domain where an Apply Pay purchase is conducted.
-During an Apple Pay purchase, `https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt` will be requested to ensure that the domain is verified.
-You can download this file from your Apple Pay Developer Portal.
+The association file is required to be hosted on any domain where an Apply Pay purchase is conducted.  
+During an Apple Pay purchase, `https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt` will be requested to ensure that the domain is verified.  
+You can download this file from your Apple Developer Portal.
 
 ## Go Page (Hosted Payment Page)
 
-The "Go" Hosted Payment Page is a seperate React.js Web App developed to mitigate failed domain verifications on third-party domains offering Apple Pay.
+The "Go" Hosted Payment Page is a seperate React.js Web App (from the widget) developed to mitigate failed domain verifications on third-party domains offering Apple Pay.
 
 ### Disable Hosted Page
 
-If you are installing the checkout widget on websites where you have ful; control, you can disable this hosted payment page.
+If you are installing the checkout widget on websites where you have full control, you can disable this hosted payment page.
 ```
 REACT_APP_DISABLE_GO="true"
 ```
 
 ### Apple Pay for third-party websites/domains
 
-The association file is required to be hosted at the domain name for the "Go" hosted payment page.
-When deploying to Netlify or some alternative, we advise using a Proxy for the file pathname to simplify management and renewal of the association file.
-In the `./public/_redirects` file, the following snippet can be added for an association file hosted on S3.
+The association file is required to be hosted at the domain name for the "Go" hosted payment page.  
+When deploying to Netlify or some alternative, we advise using a Proxy for the file pathname to simplify management and renewal of the association file.  
+In the `./public/_redirects` file, the following snippet can be added for an association file hosted on S3.  
 ```
 /.well-known/* https://s3-ap-southeast-2.amazonaws.com/buyte.au/well-known/:splat 200
 ```
 
-Now with this file reachable, third-party websites that have installed your Checkout will redirect your "Go" Page to facilitate their Apple Pay transactions.
+Now with this file reachable, third-party websites that have installed your Checkout will redirect your "Go" Page to facilitate their Apple Pay transactions.  
 
 ## Contribution
 
