@@ -1,6 +1,6 @@
 # Buyte Checkout
 
-A drop-in Checkout widget for <a href="https://github.com/rsoury/buyte">Buyte</a> - digital wallet payment orchestration, built with React.js
+A drop-in Checkout widget and self-hosted payment page for <a href="https://github.com/rsoury/buyte">Buyte</a> - digital wallet payment orchestration, built with React.js
 
 ![Buyte Banner](https://github.com/rsoury/buyte/blob/master/examples/images/banner-1544x500.jpg)
 
@@ -39,6 +39,10 @@ These instructions will get you a copy of the project built for deployment or lo
    
 ## Buyte Widget
 
+The widget is an embeddable React.js app responsible for receiving a user's intent to pay, and displaying a checkout confirmation dialog/modal after the payment has been authorised.  
+
+### Installation 
+
 You can use the following script to load the Buyte Widget.  
 Please replace the S3 URL in the snippet with your own URL targeting the built widget `index.js` file.  
 
@@ -62,35 +66,30 @@ Please replace the S3 URL in the snippet with your own URL targeting the built w
 })(window, document);
 ```
 
-To learn more about the widget JS API, please visit the [JS API Docs](https://github.com/rsoury/buyte-checkout/blob/master/docs/js-widget-api.md)  
+### API Docs
 
-## Apple Pay Merchant Id Domain Association File
+To learn more about the JS API, please visit the [JS API Docs](https://github.com/rsoury/buyte-checkout/blob/master/docs/js-widget-api.md)  
 
-The association file is required to be hosted on any domain where an Apply Pay purchase is conducted.  
-During an Apple Pay purchase, `https://yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt` will be requested to ensure that the domain is verified.  
-You can download this file from your Apple Developer Portal.
+## Buyte Go Page (Hosted Payment Page)
 
-## Go Page (Hosted Payment Page)
+The "Go" Hosted Payment Page is a React.js Web App, separate from the widget, developed to mitigate failed domain verifications and minimise domain verification maintenance when offering Apple Pay.  
 
-The "Go" Hosted Payment Page is a seperate React.js Web App (from the widget) developed to mitigate failed domain verifications on third-party domains offering Apple Pay.
+> This supports use-cases where a Payment Facilitator can offer Apple Pay through their hosted page, and therefore dismiss the requirement for its clients to manage their own Apple Pay Merchant Id Domain Association File.
 
-### Disable Hosted Page
+### Apple Pay & the Go Page
 
-If you are installing the checkout widget on websites where you have full control, you can disable this hosted payment page.
-```
-REACT_APP_DISABLE_GO="true"
-```
+The **Apple Pay Merchant Id Domain Association File** is required to be hosted on any domain where an Apple Pay purchase is conducted.  
+This includes the Go Page.
+During an Apple Pay purchase, `https://go.yourdomain.com/.well-known/apple-developer-merchantid-domain-association.txt` will be requested to ensure that the domain is verified.  
+You can download this file from your Apple Developer Portal.  
 
-### Apple Pay for third-party websites/domains
-
-The association file is required to be hosted at the domain name for the "Go" hosted payment page.  
-When deploying to Netlify or some alternative, we advise using a Proxy for the file pathname to simplify management and renewal of the association file.  
+When deploying the Go Page to Netlify or some alternative, we advise using a Proxy configuration for the association file to simplify management and renewal.  
 In the `./public/_redirects` file, the following snippet can be added for an association file hosted on S3.  
 ```
 /.well-known/* https://s3-ap-southeast-2.amazonaws.com/buyte.au/well-known/:splat 200
 ```
 
-Now with this file reachable, third-party websites that have installed your Checkout will redirect your "Go" Page to facilitate their Apple Pay transactions.  
+Now with this file reachable, third-party websites/domains that have installed their Checkout can redirect to your "Go" Page to facilitate their Apple Pay transactions.  
 
 ## Contribution
 
