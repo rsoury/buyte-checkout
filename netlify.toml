@@ -1,0 +1,9 @@
+[build]
+  publish = "dist/go"
+  command = "yarn build-public:go"
+
+[context.develop.environment]
+  REACT_APP_FORCE_ENV = "develop-staging"
+  REACT_APP_JS_URL = "https://js.buyte.dev/dev/v1/"
+  REACT_APP_API_URL = "https://api.dev.buyte.dev/v1"
+  REACT_APP_GO_URL = "https://develop--go-buyte.netlify.com/"
