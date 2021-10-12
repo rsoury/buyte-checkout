@@ -1,8 +1,9 @@
 {
-	"name": "checkout-widget",
-	"version": "0.1.0",
-	"private": true,
-	"license": "UNLICENSED",
+	"name": "@buyte/checkout",
+	"version": "1.0.0",
+	"repository": "git@github.com:rsoury/buyte-checkout.git",
+	"license": "BSD-3-Clause",
+	"author": "Ryan Soury @ Web Doodle",
 	"scripts": {
 		"analyze": "source-map-explorer --tsv 'build/{widget,go}/static/js/*.js'",
 		"start": "npm-run-all clean --parallel start:*",
