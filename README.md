@@ -148,30 +148,30 @@ window.Buyte("load", {
   window.Buyte("onShippingRequired", function(shippingContact, setShippingMethods){
       console.log(shippingContact);
       setTimeout(function(){ // Some AJAX request.
-      setShippingMethods([
-         {
-            "id": "free-shipping",
-            "name": "Free Shipping",
-            // "description": "Delivery in a week",
-            "rate": 0,
-            "minOrder": 5000
-         },
-         {
-            "id": "express-delivery",
-            "name": "Express Delivery",
-            // "description": "Delivers overnight",
-            "rate": 2900,
-            "minOrder": 0
-         },
-         {
-            "id": "standard-shipping",
-            "name": "Standard Shipping",
-            // "description": "Delivery in a week",
-            "rate": 990,
-            "minOrder": 0,
-            "maxOrder": 5000
-         }
-      ]);
+         setShippingMethods([
+            {
+               "id": "free-shipping",
+               "name": "Free Shipping",
+               // "description": "Delivery in a week",
+               "rate": 0,
+               "minOrder": 5000
+            },
+            {
+               "id": "express-delivery",
+               "name": "Express Delivery",
+               // "description": "Delivers overnight",
+               "rate": 2900,
+               "minOrder": 0
+            },
+            {
+               "id": "standard-shipping",
+               "name": "Standard Shipping",
+               // "description": "Delivery in a week",
+               "rate": 990,
+               "minOrder": 0,
+               "maxOrder": 5000
+            }
+         ]);
       }, 2000);
    })
   ```
@@ -184,7 +184,7 @@ window.Buyte("load", {
   ```javascript
    window.Buyte("onPayment", function(paymentToken, done){
       console.log(paymentToken);
-      setTimeout(function(){
+      setTimeout(function(){ // AJAX request for Payment Capture
          done();
          alert("Apple Pay Payment Authorised! " + JSON.stringify(paymentToken));
       }, 3000)
